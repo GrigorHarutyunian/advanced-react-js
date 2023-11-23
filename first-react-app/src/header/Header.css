@@ -1,0 +1,25 @@
+.header{
+    background: red;
+    display: flex;
+  }
+  .menu-nav-bar{
+    color:yellow;
+    text-decoration: none;
+    
+  }
+
+ .logo-nav{
+    width: 40%;
+    height: 100%;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ } 
+
+ .nav-bar{
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+ }
