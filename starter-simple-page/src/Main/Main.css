@@ -1,0 +1,10 @@
+.tdStyle{
+    padding: 20px 10px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align:center
+}
+.inputSearchManu{
+    width: 22%;
+    height: 29px;
+    margin: 10px;
+}

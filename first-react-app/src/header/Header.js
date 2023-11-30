@@ -1,6 +1,6 @@
 import "./Header.css";
 
-export function Header({ className, menuNames }) {
+export function Header({ menuNames, className }) {
   return (
     <header className={className}>
       <div className="logo-nav">Logo</div>

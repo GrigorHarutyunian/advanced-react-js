@@ -6,9 +6,10 @@ function App() {
   return (
     <div className="App">
       <Header
-        className="header"
+        className={"header"}
         menuNames={["Name", "Product", "Contacts", "About Us"]}
       />
+
       <Main />
     </div>
   );

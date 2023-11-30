@@ -1,0 +1,14 @@
+.leftNavbar{
+    border-right: 1px solid grey;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.ul li{
+    list-style: none;
+
+}
+.ul-secondUl{
+    margin-bottom: 80px;
+}
