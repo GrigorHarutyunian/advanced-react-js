@@ -1,3 +1,9 @@
+.topNavDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 36%;
+}
 .leftNavbar{
     border-right: 1px solid grey;
     width: 20%;
@@ -5,10 +11,35 @@
     flex-direction: column;
     justify-content: space-between;
 }
-.ul li{
+.listsDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin-top: 17px;
+}
+
+.ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.ul  .listsDiv li{
     list-style: none;
+    /* text-align: left; */
+    list-style: none; 
+    margin-left: 28px;
+    display: inline-block;
 
 }
 .ul-secondUl{
     margin-bottom: 80px;
+}
+.aa{
+    display: flex;
+    justify-content: flex-start;
+}
+.svg-inline--fa{
+    width: 1em;
 }
