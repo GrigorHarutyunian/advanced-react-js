@@ -1,0 +1,15 @@
+.cart{
+    text-align: center;
+    width: 22%;
+    background-size: cover;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: flex-start; */
+    font-size: 22px;
+    font-family: fantasy;
+    transition: transform 0.3s ease;
+    /* height: 300px; */
+    box-shadow:rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px 5px
+
+}
