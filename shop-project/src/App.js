@@ -147,6 +147,7 @@ const products = [
 ];
 function App() {
   const [cardList, setCardList] = useState([]);
+  const [product, filterProducts] = useState(products);
   const selectedProducts = (obj) => {
     if (cardList.length === 0) {
       setCardList([{ ...obj, count: 1 }]);
@@ -171,11 +172,33 @@ function App() {
       return acc + val.count;
     }, 0);
   };
+  let timeout;
+  const filteredbySearch = (evt) => {
+    if (evt.target.value === "") {
+      setTimeout(() => {
+        filterProducts(products);
+      }, 500);
+    } else {
+      const a = products.filter((obj) => {
+        return obj.songName.includes(evt.target.value);
+      });
+
+      if (timeout !== undefined) {
+        clearTimeout(timeout);
+      }
+      timeout = setTimeout(() => {
+        filterProducts(a);
+      }, 500);
+    }
+  };
 
   return (
     <div className="App">
-      <Header selectedProductsCount={selectedProductsCount(cardList)} />
-      <Main buttonClick={selectedProducts} products={products} />
+      <Header
+        filteredData={filteredbySearch}
+        selectedProductsCount={selectedProductsCount(cardList)}
+      />
+      <Main buttonClick={selectedProducts} products={product} />
     </div>
   );
 }
