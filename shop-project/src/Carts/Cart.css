@@ -16,10 +16,11 @@
 
 .cart.hovered {
     transform: scale(1.1); 
+    z-index: 2;
 }
 
 .contained{
-    position: absolute;
+    position: relative;
     bottom:60%;
     width:100px;
     left: 33%;

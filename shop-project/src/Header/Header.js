@@ -5,11 +5,10 @@ import { useEffect } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Badge from "@mui/material-next/Badge";
-
 import "./Header.css";
-export const Header = ({ selectedProductsCount, filteredData }) => {
+import { Modal } from "./Modal/Modal";
+export const Header = ({ selectedProductsCount, filteredData, cardList }) => {
   const [scrolling, setScrolling] = useState(false);
-
   const handleScroll = () => {
     if (window.scrollY > 50) {
       setScrolling(true);
@@ -25,6 +24,8 @@ export const Header = ({ selectedProductsCount, filteredData }) => {
     };
   }, []);
 
+  const [cartClicked, setCartClicked] = useState(false);
+
   return (
     <header className={`header ${scrolling ? "scrolled" : ""}`}>
       <FontAwesomeIcon icon={faIcons} />
@@ -36,8 +37,12 @@ export const Header = ({ selectedProductsCount, filteredData }) => {
       />
       <div className="rigthSide">
         <div>
-          <FontAwesomeIcon icon={faCartShopping} />
+          <FontAwesomeIcon
+            onClick={() => setCartClicked(!cartClicked)}
+            icon={faCartShopping}
+          />
           <Badge badgeContent={selectedProductsCount} />
+          {cartClicked && <Modal cardList={cardList} />}
         </div>
       </div>
     </header>

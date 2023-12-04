@@ -1,0 +1,10 @@
+.list{
+    margin-top: 10px;
+    /* display: flex; */
+    display: flex;
+    justify-content: space-between;
+}
+.buttonGroup{
+    width: 47px;
+    height: 26px;
+}

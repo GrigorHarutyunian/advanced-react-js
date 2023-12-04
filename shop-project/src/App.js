@@ -197,6 +197,7 @@ function App() {
       <Header
         filteredData={filteredbySearch}
         selectedProductsCount={selectedProductsCount(cardList)}
+        cardList={cardList}
       />
       <Main buttonClick={selectedProducts} products={product} />
     </div>
