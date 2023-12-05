@@ -1,9 +1,31 @@
-.modal{
-    width: 266px;
-    height: 400px;
+.parentModal{
     position: absolute;
-    right: 12px;
-    overflow: overlay;
+    background: #ff000080;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    animation: slideDown 1s ease-out;
+}
+
+.modal{
+    width: 80%;
+    height: 80%;
+    position: absolute;
     background: white;
+    top: 10%;
+    left: 10%;
+    overflow: auto;
+
     
+}
+
+@keyframes slideDown{
+0% {
+    transform: translateY(-100%);
+}
+
+100% {
+    transform: translateY(0);
+}
 }

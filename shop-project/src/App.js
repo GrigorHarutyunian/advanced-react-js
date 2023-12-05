@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import { Header } from "./Header/Header";
 import { Main } from "./Main/Main";
+import { Hidden } from "@mui/material";
 
 const products = [
   {
@@ -147,7 +148,9 @@ const products = [
 ];
 function App() {
   const [cardList, setCardList] = useState([]);
-  const [product, filterProducts] = useState(products);
+  const [filteredProduct, setFilterProducts] = useState(products);
+  const [modalClicked, setModalClicked] = useState(false);
+
   const selectedProducts = (obj) => {
     if (cardList.length === 0) {
       setCardList([{ ...obj, count: 1 }]);
@@ -167,16 +170,12 @@ function App() {
       setCardList([...cardList, { ...obj, count: 1 }]);
     }
   };
-  const selectedProductsCount = (cardList) => {
-    return cardList.reduce((acc, val) => {
-      return acc + val.count;
-    }, 0);
-  };
+
   let timeout;
   const filteredbySearch = (evt) => {
     if (evt.target.value === "") {
       setTimeout(() => {
-        filterProducts(products);
+        setFilterProducts(products);
       }, 500);
     } else {
       const a = products.filter((obj) => {
@@ -187,19 +186,34 @@ function App() {
         clearTimeout(timeout);
       }
       timeout = setTimeout(() => {
-        filterProducts(a);
+        setFilterProducts(a);
       }, 500);
     }
+  };
+
+  const onClickModal = () => {
+    if (modalClicked === true) {
+      document.body.style.overflow = "scroll";
+    } else {
+      document.body.style.overflow = "hidden";
+    }
+
+    setModalClicked(!modalClicked);
   };
 
   return (
     <div className="App">
       <Header
+        thereIsModal={modalClicked}
+        onClickModal={onClickModal}
         filteredData={filteredbySearch}
-        selectedProductsCount={selectedProductsCount(cardList)}
         cardList={cardList}
       />
-      <Main buttonClick={selectedProducts} products={product} />
+      <Main
+        className={`main`}
+        buttonClick={selectedProducts}
+        products={filteredProduct}
+      />
     </div>
   );
 }

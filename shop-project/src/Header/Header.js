@@ -7,8 +7,14 @@ import TextField from "@mui/material/TextField";
 import Badge from "@mui/material-next/Badge";
 import "./Header.css";
 import { Modal } from "./Modal/Modal";
-export const Header = ({ selectedProductsCount, filteredData, cardList }) => {
+export const Header = ({
+  filteredData,
+  cardList,
+  onClickModal,
+  thereIsModal,
+}) => {
   const [scrolling, setScrolling] = useState(false);
+  const [a, b] = useState(0);
   const handleScroll = () => {
     if (window.scrollY > 50) {
       setScrolling(true);
@@ -23,8 +29,14 @@ export const Header = ({ selectedProductsCount, filteredData, cardList }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  const [cartClicked, setCartClicked] = useState(false);
+  useEffect(() => {
+    const selectedProductCount = (cardList) => {
+      return cardList.reduce((acc, val) => {
+        return acc + val.count;
+      }, 0);
+    };
+    b(selectedProductCount(cardList));
+  }, [cardList]);
 
   return (
     <header className={`header ${scrolling ? "scrolled" : ""}`}>
@@ -37,12 +49,16 @@ export const Header = ({ selectedProductsCount, filteredData, cardList }) => {
       />
       <div className="rigthSide">
         <div>
-          <FontAwesomeIcon
-            onClick={() => setCartClicked(!cartClicked)}
-            icon={faCartShopping}
-          />
-          <Badge badgeContent={selectedProductsCount} />
-          {cartClicked && <Modal cardList={cardList} />}
+          <FontAwesomeIcon onClick={onClickModal} icon={faCartShopping} />
+          <Badge badgeContent={a} />
+          {thereIsModal && (
+            <Modal
+              onClickModal={onClickModal}
+              cardCount={a}
+              setCardCount={b}
+              cardList={cardList}
+            />
+          )}
         </div>
       </div>
     </header>

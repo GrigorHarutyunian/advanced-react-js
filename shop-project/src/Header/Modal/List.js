@@ -1,34 +1,46 @@
 import "./List.css";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
-export const List = ({ uniqueDate, className }) => {
+import { useEffect } from "react";
+import { useState } from "react";
+export const List = ({ uniqueDate, className, cardCount, setCardCount }) => {
+  let [count, setCount] = useState(uniqueDate.count);
+  console.log(cardCount);
   return (
-    <div className={className} key={uniqueDate.id}>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          width: "100%",
-          fontFamily: "fantasy",
-          fontStyle: "italic",
-        }}
-      >
+    <div className={className}>
+      <div className={"listContent"}>
         {uniqueDate.songName}
-        <span style={{ alignSelf: "end", marginRight: "10px" }}>1</span>
+        <span style={{ alignSelf: "center" }}>{uniqueDate.count}</span>
         <ButtonGroup
           className="buttonGroup"
           disableElevation
           variant="contained"
           aria-label="Disabled elevation buttons"
         >
-          <Button>+</Button>
-          <Button>-</Button>
+          <Button
+            onClick={() => {
+              setCount(++uniqueDate.count);
+              setCardCount(++cardCount);
+            }}
+          >
+            +
+          </Button>
+          <Button
+            onClick={() => {
+              if (uniqueDate.count > 0) {
+                setCount(--uniqueDate.count);
+                setCardCount(--cardCount);
+              }
+            }}
+          >
+            -
+          </Button>
         </ButtonGroup>
       </div>
-      <div>
+      <div style={{ width: "300px" }}>
         <img
           src={uniqueDate.img}
-          style={{ width: "112px", height: "68px" }}
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
         ></img>
       </div>
     </div>
