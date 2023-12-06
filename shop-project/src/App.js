@@ -1,9 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { Header } from "./Header/Header";
 import { Main } from "./Main/Main";
 import { Hidden } from "@mui/material";
-
+import { createContext } from "react";
+import { useContext } from "react";
 const products = [
   {
     id: 1,
@@ -146,10 +147,18 @@ const products = [
     img: "https://i.pinimg.com/736x/02/17/1d/02171d26e769beaae7fb6789159e50d2.jpg",
   },
 ];
+export { ContextFunction };
+const ContextFunction = React.createContext();
 function App() {
   const [cardList, setCardList] = useState([]);
   const [filteredProduct, setFilterProducts] = useState(products);
   const [modalClicked, setModalClicked] = useState(false);
+  const deletItem = (id) => {
+    const arr = cardList.filter((val) => {
+      return val.id !== id;
+    });
+    setCardList(arr);
+  };
 
   const selectedProducts = (obj) => {
     if (cardList.length === 0) {
@@ -203,12 +212,14 @@ function App() {
 
   return (
     <div className="App">
-      <Header
-        thereIsModal={modalClicked}
-        onClickModal={onClickModal}
-        filteredData={filteredbySearch}
-        cardList={cardList}
-      />
+      <ContextFunction.Provider value={deletItem}>
+        <Header
+          thereIsModal={modalClicked}
+          onClickModal={onClickModal}
+          filteredData={filteredbySearch}
+          cardList={cardList}
+        />
+      </ContextFunction.Provider>
       <Main
         className={`main`}
         buttonClick={selectedProducts}
