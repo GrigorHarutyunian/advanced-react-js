@@ -22,7 +22,7 @@ export const Modal = ({
             fontFamily: "fantasy",
           }}
         >
-          Total ${totolPrice}
+          Shopping Card
         </p>
         <ul style={{ margin: "29px", padding: "28px", height: "100%" }}>
           {cardList.map((obj) => {
@@ -37,6 +37,27 @@ export const Modal = ({
             );
           })}
         </ul>
+      </div>
+      <div
+        style={{
+          background: "rgb(194, 228, 222)",
+          width: "16%",
+          height: "8%",
+          position: "fixed",
+          bottom: "12px",
+          right: "11.4%",
+          borderRadius: "55px",
+        }}
+      >
+        <p
+          style={{
+            textAlign: "center",
+            fontSize: "25px",
+            fontFamily: "fantasy",
+          }}
+        >
+          Total ${totolPrice}
+        </p>
       </div>
     </div>
   );

@@ -1,9 +1,11 @@
 .list{
     margin-top: 10px;
+    margin-bottom: 30px;
     display: flex;
     flex-direction: row;
     height: 25%;
-    border: 2px solid;
+    border: 1px solid grey;
+    border-radius: 17px;
 }
 .buttonGroup{
     width: 78px;

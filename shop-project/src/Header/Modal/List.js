@@ -16,10 +16,10 @@ export const List = ({ uniqueDate, className, cardCount, setCardCount }) => {
         <img
           src={uniqueDate.img}
           style={{
-            width: "20%",
-            height: "100%",
+            width: "15%",
+            height: "91%",
             objectFit: "cover",
-            borderRadius: "46px",
+            borderRadius: "100px",
           }}
         ></img>
 
