@@ -3,6 +3,7 @@ import { faIcons, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useEffect } from "react";
 import Box from "@mui/material/Box";
+import { CSSTransition } from "react-transition-group";
 import TextField from "@mui/material/TextField";
 import Badge from "@mui/material-next/Badge";
 import "./Header.css";
@@ -38,6 +39,10 @@ export const Header = ({
     b(selectedProductCount(cardList));
   }, [cardList]);
 
+  const deletedItem = (id) => {
+    return id;
+  };
+
   return (
     <header className={`header ${scrolling ? "scrolled" : ""}`}>
       <FontAwesomeIcon icon={faIcons} />
@@ -51,14 +56,26 @@ export const Header = ({
         <div>
           <FontAwesomeIcon onClick={onClickModal} icon={faCartShopping} />
           <Badge badgeContent={a} />
-          {thereIsModal && (
+          <CSSTransition
+            in={thereIsModal}
+            timeout={500} // Duration of the animation
+            classNames={{
+              enter: "modal-enter",
+              enterActive: "modal-enter-active",
+              exit: "modal-exit",
+              exitActive: "modal-exit-active",
+            }}
+            unmountOnExit
+          >
             <Modal
+              className={"parentModal"}
+              deletedItem={deletedItem}
               onClickModal={onClickModal}
               cardCount={a}
               setCardCount={b}
               cardList={cardList}
             />
-          )}
+          </CSSTransition>
         </div>
       </div>
     </header>

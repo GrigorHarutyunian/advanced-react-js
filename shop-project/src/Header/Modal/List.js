@@ -1,6 +1,7 @@
 import "./List.css";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
@@ -15,14 +16,16 @@ export const List = ({ uniqueDate, className, cardCount, setCardCount }) => {
         <img
           src={uniqueDate.img}
           style={{
-            width: "10%",
+            width: "20%",
             height: "100%",
             objectFit: "cover",
             borderRadius: "46px",
           }}
         ></img>
-        {uniqueDate.songName}
 
+        <span style={{ width: "140px", height: "41px" }}>
+          {uniqueDate.songName}
+        </span>
         <ButtonGroup
           className="buttonGroup"
           disableElevation
@@ -49,8 +52,16 @@ export const List = ({ uniqueDate, className, cardCount, setCardCount }) => {
             +
           </Button>
         </ButtonGroup>
-        {"$" + +uniqueDate.price.slice(1) * uniqueDate.count}
-        <button onClick={() => a(uniqueDate.id)}>x</button>
+        <span style={{ width: "20px", height: "20px" }}>
+          {"$" + +uniqueDate.price.slice(1) * uniqueDate.count}
+        </span>
+        <Button
+          onClick={() => a(uniqueDate.id)}
+          variant="outlined"
+          startIcon={<DeleteIcon />}
+        >
+          Delete
+        </Button>
       </div>
     </div>
   );

@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import "./App.css";
 import { Header } from "./Header/Header";
 import { Main } from "./Main/Main";
-import { Hidden } from "@mui/material";
-import { createContext } from "react";
-import { useContext } from "react";
+export { ContextFunction };
+const ContextFunction = React.createContext();
 const products = [
   {
     id: 1,
@@ -147,8 +146,7 @@ const products = [
     img: "https://i.pinimg.com/736x/02/17/1d/02171d26e769beaae7fb6789159e50d2.jpg",
   },
 ];
-export { ContextFunction };
-const ContextFunction = React.createContext();
+
 function App() {
   const [cardList, setCardList] = useState([]);
   const [filteredProduct, setFilterProducts] = useState(products);
@@ -201,12 +199,6 @@ function App() {
   };
 
   const onClickModal = () => {
-    if (modalClicked === true) {
-      document.body.style.overflow = "scroll";
-    } else {
-      document.body.style.overflow = "hidden";
-    }
-
     setModalClicked(!modalClicked);
   };
 

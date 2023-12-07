@@ -1,31 +1,47 @@
-.parentModal{
-    position: absolute;
-    background: #ff000080;
-    top: 0;
+.parentModal {
+    position: fixed;
+    z-index: 1;
     left: 0;
+    top: 0;
     width: 100%;
-    min-height: 100vh;
-    animation: slideDown 1s ease-out;
-}
-
-.modal{
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    animation: slideDown 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+    
+  .modal {
     width: 80%;
     height: 80%;
     position: absolute;
-    background: white;
-    top: 10%;
-    left: 10%;
+    background-image: url(/src/Images/1_Gd6fni3JUnFTyNoCCcKxTw.jpg);
     overflow: auto;
-
-    
-}
-
-@keyframes slideDown{
-0% {
-    transform: translateY(-100%);
-}
-
-100% {
+  }
+  
+  .modal-exit {
     transform: translateY(0);
-}
-}
+  }
+  .modal-exit-active {
+    transform: translateY(-100%);
+    transition: transform 0.5s ease-in-out; /* Adjust the duration and easing as needed */
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-100%);
+    }
+  }
+  
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }

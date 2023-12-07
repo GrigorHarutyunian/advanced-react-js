@@ -16,7 +16,6 @@
 
 .cart.hovered {
     transform: scale(1.1); 
-    z-index: 2;
 }
 
 .contained{
