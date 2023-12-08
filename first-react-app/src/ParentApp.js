@@ -5,18 +5,35 @@ import { Parentheader } from "./parent header/ParentHeader";
 import { CompletedTodos } from "./completed todos/CompletedTodos";
 import { Route } from "react-router-dom";
 import { Routes } from "react-router-dom";
-
+import { useState } from "react";
 export const ParentApp = () => {
+  const [drawList, setDrawList] = useState([]);
+  const [allTodosList, setAllTodos] = useState([]);
   const newCompletedList = (obj) => {
-    console.log(obj);
+    setDrawList([...drawList, ...obj]);
   };
+
   return (
     <div className="parentDiv">
       <Parentheader />
       <Routes>
-        <Route path="/" element={<App newCompletedList={newCompletedList} />} />
-        <Route path="/completed" element={<CompletedTodos />} />
-        <Route path="/calendar" element={<MyCalendar />} />
+        <Route
+          path="/"
+          element={
+            <App
+              setAllTodos={setAllTodos}
+              newCompletedList={newCompletedList}
+            />
+          }
+        />
+        <Route
+          path="/completed"
+          element={<CompletedTodos newListDraw={drawList} />}
+        />
+        <Route
+          path="/calendar"
+          element={<MyCalendar allList={allTodosList} />}
+        />
       </Routes>
     </div>
   );

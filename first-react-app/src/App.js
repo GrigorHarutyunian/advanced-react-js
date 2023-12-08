@@ -33,9 +33,13 @@ function reducer(state, action) {
   }
 }
 
-function App({ newCompletedList }) {
+function App({ newCompletedList, setAllTodos }) {
   const [data, dispatch] = useReducer(reducer, []);
   const [completedData, setCompletedData] = useState([]);
+
+  useEffect(() => {
+    setAllTodos([...data, ...completedData]);
+  }, [data, completedData]);
 
   useEffect(() => {
     newCompletedList(completedData);

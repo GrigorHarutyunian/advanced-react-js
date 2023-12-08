@@ -19,8 +19,8 @@ export const TodoItem = ({
         <span>{text}</span>
 
         <span>{date}</span>
-        <IconButton aria-label="delete" size="large">
-          <DeleteIcon onClick={deleteOneTodo} fontSize="inherit" />
+        <IconButton onClick={deleteOneTodo} aria-label="delete" size="large">
+          <DeleteIcon fontSize="inherit" />
         </IconButton>
       </label>
     </div>
