@@ -1,12 +1,14 @@
 .app{
   background: blanchedalmond;
   width: 42%;
-  height: 70%;
+  height: 84vh;
   border-radius: 20px;
+  margin-top: 27px;
 }
-#root{
+/* #root{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-}
+  min-height: 100vh;
+} */

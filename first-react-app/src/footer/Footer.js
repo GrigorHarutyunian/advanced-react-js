@@ -1,11 +1,19 @@
 import "./Footer.css";
+import { Button } from "@mui/material";
 export const Footer = ({ cleareCompletedTodo, data, completedTodos }) => {
   return (
     <footer className="footer">
-      <span>
+      <span style={{ fontSize: "30px" }}>
         {completedTodos()}/{data.length}
       </span>
-      <button onClick={cleareCompletedTodo}>Completed</button>
+      <Button
+        className="completed"
+        onClick={cleareCompletedTodo}
+        variant="contained"
+        color="success"
+      >
+        Done
+      </Button>
     </footer>
   );
 };

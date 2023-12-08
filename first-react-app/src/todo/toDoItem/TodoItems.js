@@ -1,4 +1,7 @@
 import "./TodoItems.css";
+import Checkbox from "@mui/material/Checkbox";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
 export const TodoItem = ({
   text,
   date,
@@ -8,18 +11,18 @@ export const TodoItem = ({
 }) => {
   return (
     <div className="todoItem">
-      <label>
-        <input
+      <label className="labelTodoItem">
+        <Checkbox
           onChange={(evt) => isCompletedTodo(evt.target.checked)}
-          type="checkbox"
-        ></input>
+          color="success"
+        />
         <span>{text}</span>
+
+        <span>{date}</span>
+        <IconButton aria-label="delete" size="large">
+          <DeleteIcon onClick={deleteOneTodo} fontSize="inherit" />
+        </IconButton>
       </label>
-      <span>{date}</span>
-      <div>
-        <button onClick={changeTodo}>change</button>
-        <button onClick={deleteOneTodo}>X</button>
-      </div>
     </div>
   );
 };

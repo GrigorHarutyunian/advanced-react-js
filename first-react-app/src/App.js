@@ -2,7 +2,7 @@ import "./App.css";
 import { Header } from "./header/Header.js";
 import { Todo } from "./todo/ToDo.js";
 import { Footer } from "./footer/Footer.js";
-import { useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 
 function reducer(state, action) {
   if (action.type === "add") {
@@ -30,24 +30,17 @@ function reducer(state, action) {
     });
   } else if (action.type === "cleareCompleted") {
     return state.filter((todo) => !todo.completed);
-  } else if (action.type === "changing") {
-    return state.map((todo) => {
-      if (todo.id === action.payload) {
-        return {
-          ...todo,
-          text: "AAA",
-          date: 11,
-        };
-      } else {
-        return todo;
-      }
-    });
   }
 }
 
-function App() {
+function App({ newCompletedList }) {
   const [data, dispatch] = useReducer(reducer, []);
-  console.log(data);
+  const [completedData, setCompletedData] = useState([]);
+
+  useEffect(() => {
+    newCompletedList(completedData);
+  }, [completedData]);
+
   const gettingNewData = (newInfo) => {
     dispatch({
       type: "add",
@@ -72,7 +65,10 @@ function App() {
   };
 
   const cleareCompletedTodo = () => {
-    console.log(1);
+    const newArr = data.filter((val) => {
+      return val.completed;
+    });
+    setCompletedData([...completedData, ...newArr]);
     dispatch({ type: "cleareCompleted" });
   };
 
@@ -82,13 +78,6 @@ function App() {
     }, 0);
   };
 
-  const changeTodo = (todoID) => {
-    dispatch({
-      type: "changing",
-      payload: todoID,
-    });
-  };
-
   return (
     <div className="app">
       <Header gettingNewData={gettingNewData} />
@@ -96,7 +85,6 @@ function App() {
         isCompletedTodo={isCompletedTodo}
         deleteOneTodo={deleteOneTodo}
         data={data}
-        changeTodo={changeTodo}
       />
       <Footer
         completedTodos={completedTodos}

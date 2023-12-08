@@ -13,28 +13,34 @@ export function Header({ gettingNewData }) {
   const [inputValue, setInputValue] = useState("");
 
   return (
-    <header className="header">
+    <header className="headerSmall">
       <form
         onSubmit={(evt) => {
           evt.preventDefault();
-          if (date && date !== "Invalid Date") {
+          if (date && date !== "Invalid Date" && inputValue !== "") {
             gettingNewData({ text: inputValue, date: date });
           }
         }}
-        style={{ display: "flex" }}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          padding: "2px",
+          marginTop: "11px",
+        }}
       >
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={["DateTimePicker"]}>
             <DateTimePicker
               onChange={(e) => setDate(e?.$d.toLocaleString())}
-              label="Basic date time picker"
+              label="Date"
             />
           </DemoContainer>
         </LocalizationProvider>
         <TextField
+          autoComplete="off"
           onChange={(evt) => setInputValue(evt.target.value)}
           id="outlined-basic"
-          label="Outlined"
+          label="Todo"
           variant="outlined"
         />
         <Button type="submit" variant="contained" endIcon={<SendIcon />}>
