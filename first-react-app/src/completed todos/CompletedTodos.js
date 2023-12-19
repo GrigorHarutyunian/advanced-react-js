@@ -1,9 +1,6 @@
-import { useEffect, useState } from "react";
 import "./CompletedTodos.css";
 import CheckIcon from "@mui/icons-material/Check";
 export const CompletedTodos = ({ newListDraw }) => {
-  const [newa, setNewListDraw] = useState(newListDraw);
-
   return (
     <div className="completedTodos">
       {newListDraw.map((obj) => {

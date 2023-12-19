@@ -23,6 +23,7 @@ export const ParentApp = () => {
             <App
               setAllTodos={setAllTodos}
               newCompletedList={newCompletedList}
+              allTodosList={allTodosList}
             />
           }
         />
@@ -32,7 +33,7 @@ export const ParentApp = () => {
         />
         <Route
           path="/calendar"
-          element={<MyCalendar allList={allTodosList} />}
+          element={<MyCalendar allList={[...allTodosList, ...drawList]} />}
         />
       </Routes>
     </div>

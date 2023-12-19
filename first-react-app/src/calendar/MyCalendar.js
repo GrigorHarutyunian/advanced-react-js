@@ -2,25 +2,38 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const localizer = momentLocalizer(moment);
-
 export const MyCalendar = ({ allList }) => {
-  const events = [
-    {
-      title: "Meeting",
-      start: new Date(2023, 11, 8, 10, 0),
-      end: new Date(2023, 11, 8, 12, 0),
-    },
-    // Add more events as needed
-  ];
+  let events = [];
+
+  function convertDateStringToDate(dateString, sec = 0) {
+    const [datePart, timePart] = dateString.split(", ");
+
+    let [month, day, year] = datePart.split("/").map(Number);
+
+    let [time, ampm] = timePart.split(" ");
+    let [hours, minutes, seconds] = time.split(":").map(Number);
+
+    if (ampm === "PM" && hours < 12) {
+      hours += 12;
+    } else if (ampm === "AM" && hours === 12) {
+      hours = 0;
+    }
+
+    return new Date(year, month - 1, day, hours, minutes, seconds + sec);
+  }
 
   allList.forEach((todo) => {
-    events.push({
-      title: "Meeting",
-      start: new Date(todo.date),
-      end: new Date(todo.date + 1),
-    });
+    events = [
+      ...events,
+      {
+        title: todo.text,
+        start: convertDateStringToDate(todo.date),
+        end: convertDateStringToDate(todo.date, 1),
+      },
+    ];
   });
 
   return (

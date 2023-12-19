@@ -3,14 +3,14 @@ import { Header } from "./header/Header.js";
 import { Todo } from "./todo/ToDo.js";
 import { Footer } from "./footer/Footer.js";
 import { useEffect, useReducer, useState } from "react";
-
+import { useLocation } from "react-router-dom";
 function reducer(state, action) {
   if (action.type === "add") {
     return [
       ...state,
       {
         text: action.payload.text,
-        date: action.payload.date.split(",")[0],
+        date: action.payload.date,
         id: Math.random(),
         completed: false,
       },
@@ -34,12 +34,20 @@ function reducer(state, action) {
 }
 
 function App({ newCompletedList, setAllTodos }) {
-  const [data, dispatch] = useReducer(reducer, []);
-  const [completedData, setCompletedData] = useState([]);
+  const location = useLocation();
 
+  const initialState =
+    location.state && location.state.todos
+      ? location.state.todos
+      : JSON.parse(localStorage.getItem("todos")) || [];
+
+  const [data, dispatch] = useReducer(reducer, initialState);
+  const [completedData, setCompletedData] = useState([]);
+  console.log(data);
   useEffect(() => {
-    setAllTodos([...data, ...completedData]);
-  }, [data, completedData]);
+    localStorage.setItem("todos", JSON.stringify(data));
+    setAllTodos(data);
+  }, [data]);
 
   useEffect(() => {
     newCompletedList(completedData);

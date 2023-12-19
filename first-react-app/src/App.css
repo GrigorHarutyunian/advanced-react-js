@@ -1,14 +1,11 @@
-.app{
-  background: blanchedalmond;
+.app {
+  background: #f0f8ff96;
   width: 42%;
   height: 84vh;
   border-radius: 20px;
   margin-top: 27px;
 }
-/* #root{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-} */
+
+.rbc-calendar {
+  background-color: #cd5c5cd1;
+}

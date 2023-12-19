@@ -18,7 +18,7 @@ export const TodoItem = ({
         />
         <span>{text}</span>
 
-        <span>{date}</span>
+        <span>{date.slice(0, 9)}</span>
         <IconButton onClick={deleteOneTodo} aria-label="delete" size="large">
           <DeleteIcon fontSize="inherit" />
         </IconButton>
