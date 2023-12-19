@@ -1,5 +1,6 @@
 import "./CompletedTodos.css";
 import CheckIcon from "@mui/icons-material/Check";
+
 export const CompletedTodos = ({ newListDraw }) => {
   return (
     <div className="completedTodos">
